@@ -18,23 +18,19 @@ class DatasetUserRepository(UserRepository):
         self._db = db
 
     def find_by_id(self, id: str) -> Optional[User]:
-        with self._db as tx:
-            table: Table = tx.get_table(self.table_name)
-            user_dict = table.find_one(id=id)
-            if user_dict:
-                return User(**user_dict)
+        table: Table = self._db.get_table(self.table_name)
+        user_dict = table.find_one(id=id)
+        if user_dict:
+            return User(**user_dict)
 
     def find_all(self) -> List[User]:
-        with self._db as tx:
-            table: Table = tx.get_table(self.table_name)
-            return [User(**user_dict) for user_dict in table.all()]
+        table: Table = self._db.get_table(self.table_name)
+        return [User(**user_dict) for user_dict in table.all()]
 
     def save(self, user: User) -> User:
-        with self._db as tx:
-            table: Table = tx.get_table(self.table_name)
-            return table.upsert(user.dict(), keys=["id"])
+        table: Table = self._db.get_table(self.table_name)
+        return table.upsert(user.dict(), keys=["id"])
 
     def delete_by_id(self, id: str) -> User:
-        with self._db as tx:
-            table: Table = tx.get_table(self.table_name)
-            return table.delete(id=id)
+        table: Table = self._db.get_table(self.table_name)
+        return table.delete(id=id)

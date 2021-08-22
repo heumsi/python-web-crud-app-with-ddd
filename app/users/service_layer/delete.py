@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 
 from app.users.domain.repository import UserRepository
+from app.users.service_layer.unit_of_work import UnitOfWork
 
 
 class DeleteUserRequest(BaseModel):
@@ -8,8 +9,11 @@ class DeleteUserRequest(BaseModel):
 
 
 class DeleteUser:
-    def __init__(self, user_repository: UserRepository) -> None:
-        self.user_repository = user_repository
+    def __init__(self, user_repository: UserRepository, uow: UnitOfWork) -> None:
+        self._user_repository = user_repository
+        self._uow = uow
 
     def execute(self, req: DeleteUserRequest) -> None:
-        self.user_repository.delete_by_id(req.id)
+        with self._uow:
+            self._user_repository.delete_by_id(req.id)
+            self._uow.commit()

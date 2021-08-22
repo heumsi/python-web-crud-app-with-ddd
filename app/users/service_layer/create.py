@@ -2,6 +2,7 @@ from pydantic import BaseModel
 
 from app.users.domain.model import User
 from app.users.domain.repository import UserRepository
+from app.users.service_layer.unit_of_work import UnitOfWork
 
 
 class CreateUserRequest(BaseModel):
@@ -16,10 +17,13 @@ class CreateUserResponse(BaseModel):
 
 
 class CreateUser:
-    def __init__(self, user_repository: UserRepository) -> None:
-        self.user_repository = user_repository
+    def __init__(self, user_repository: UserRepository, uow: UnitOfWork) -> None:
+        self._user_repository = user_repository
+        self._uow = uow
 
     def execute(self, req: CreateUserRequest) -> CreateUserResponse:
         user = User(id=req.id, name=req.name, password=req.password)
-        self.user_repository.save(user)
+        with self._uow:
+            self._user_repository.save(user)
+            self._uow.commit()
         return CreateUserResponse(id=user.id, name=user.name)

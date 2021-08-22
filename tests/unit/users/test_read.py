@@ -7,25 +7,29 @@ from app.users.service_layer.read import (
 )
 from tests.unit.users.conftest import get_fake_user, get_fake_users
 from tests.unit.users.fake_repository import FakeUserRepository
+from tests.unit.users.fake_unit_of_work import FakeUnitOfWork
 
 
 def test_read_user():
     # given
-    fake_user_repository = FakeUserRepository([get_fake_user()])
+    uow = FakeUnitOfWork()
+    user_repository = FakeUserRepository([get_fake_user()])
     req = ReadUserRequest(id="hardy@socar.kr")
-    service = ReadUser(user_repository=fake_user_repository)
+    service = ReadUser(user_repository=user_repository, uow=uow)
 
     # when
     res = service.execute(req)
 
     # then
     assert res == ReadUserResponse(id="hardy@socar.kr", name="hardy")
+    assert uow.committed is False
 
 
 def test_read_users():
     # given
-    fake_user_repository = FakeUserRepository(get_fake_users())
-    service = ReadUsers(user_repository=fake_user_repository)
+    uow = FakeUnitOfWork()
+    user_repository = FakeUserRepository(get_fake_users())
+    service = ReadUsers(user_repository=user_repository, uow=uow)
 
     # when
     res = service.execute()
@@ -38,3 +42,4 @@ def test_read_users():
             ReadUserResponse(**{"id": "humphrey@socar.kr", "name": "humphrey"}),
         ]
     )
+    assert uow.committed is False
