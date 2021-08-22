@@ -1,4 +1,4 @@
-from typing import List, Optional, Set
+from typing import List, Optional
 
 from app.users.domain.model import User
 from app.users.domain.repository import UserRepository

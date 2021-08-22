@@ -7,5 +7,9 @@ class DeleteUserRequest(BaseModel):
     id: str
 
 
-def delete_user(req: DeleteUserRequest, fake_user_repository: UserRepository) -> None:
-    fake_user_repository.delete_by_id(req.id)
+class DeleteUser:
+    def __init__(self, user_repository: UserRepository) -> None:
+        self.user_repository = user_repository
+
+    def execute(self, req: DeleteUserRequest) -> None:
+        self.user_repository.delete_by_id(req.id)

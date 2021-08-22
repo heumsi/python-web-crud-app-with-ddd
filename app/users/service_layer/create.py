@@ -15,7 +15,11 @@ class CreateUserResponse(BaseModel):
     name: str
 
 
-def create_user(req: CreateUserRequest, fake_user_repository: UserRepository) -> CreateUserResponse:
-    user = User(id=req.id, name=req.name, password=req.password)
-    fake_user_repository.save(user)
-    return CreateUserResponse(id=user.id, name=user.name)
+class CreateUser:
+    def __init__(self, user_repository: UserRepository) -> None:
+        self.user_repository = user_repository
+
+    def execute(self, req: CreateUserRequest) -> CreateUserResponse:
+        user = User(id=req.id, name=req.name, password=req.password)
+        self.user_repository.save(user)
+        return CreateUserResponse(id=user.id, name=user.name)

@@ -7,9 +7,12 @@ authors = ["heumsi <heumsi@naver.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 fastapi = {extras = ["all"], version = "^0.68.0"}
+dependency-injector = "^4.35.2"
+dataset = "^1.5.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"
+requests = "^2.26.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

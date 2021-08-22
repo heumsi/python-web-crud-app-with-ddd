@@ -1,4 +1,10 @@
-from app.users.service_layer.read import read_user, ReadUserRequest, ReadUserResponse, read_users, ReadUsersResponse
+from app.users.service_layer.read import (
+    ReadUser,
+    ReadUserRequest,
+    ReadUserResponse,
+    ReadUsers,
+    ReadUsersResponse,
+)
 from tests.unit.users.conftest import get_fake_user, get_fake_users
 from tests.unit.users.fake_repository import FakeUserRepository
 
@@ -7,9 +13,10 @@ def test_read_user():
     # given
     fake_user_repository = FakeUserRepository([get_fake_user()])
     req = ReadUserRequest(id="hardy@socar.kr")
+    service = ReadUser(user_repository=fake_user_repository)
 
     # when
-    res = read_user(req, fake_user_repository)
+    res = service.execute(req)
 
     # then
     assert res == ReadUserResponse(id="hardy@socar.kr", name="hardy")
@@ -18,9 +25,10 @@ def test_read_user():
 def test_read_users():
     # given
     fake_user_repository = FakeUserRepository(get_fake_users())
+    service = ReadUsers(user_repository=fake_user_repository)
 
     # when
-    res = read_users(fake_user_repository)
+    res = service.execute()
 
     # then
     assert res == ReadUsersResponse(
