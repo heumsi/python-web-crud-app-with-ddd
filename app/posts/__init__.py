@@ -1,21 +1,18 @@
-import uvicorn
 from fastapi import FastAPI
 
+from app.posts.adapters.container import PostContainer
+from app.posts.presentation import entrypoints
+from app.posts.adapters.repository import create_tables
+from app.posts.presentation.error_handler import add_error_handler
 
-def create_app() -> FastAPI:
-    # container = UserContainer()
-    # container.wire(modules=[entrypoints])
 
-    # db = container.database()
-    # create_tables(db)
+def create_app(container: PostContainer) -> FastAPI:
+    container.wire(modules=[entrypoints])
+    create_tables(container.db())
 
     app_ = FastAPI()
-    # app_.include_router(entrypoints.router)
-    # add_error_handler(app_)
+    app_.include_router(entrypoints.router)
+    add_error_handler(app_)
 
     return app_
 
-
-if __name__ == "__main__":
-    app_ = create_app()
-    uvicorn.run(app_, host="0.0.0.0", port=8000)

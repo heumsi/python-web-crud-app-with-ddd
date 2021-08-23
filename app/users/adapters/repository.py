@@ -7,10 +7,6 @@ from app.users.domain.model import User
 from app.users.domain.repository import UserRepository
 
 
-def create_tables(db: Database) -> None:
-    db.create_table("user", primary_id="id", primary_type=Types.string)
-
-
 class DatasetUserRepository(UserRepository):
     table_name = "user"
 
@@ -34,3 +30,7 @@ class DatasetUserRepository(UserRepository):
     def delete_by_id(self, id: str) -> Optional[User]:
         table: Table = self._db.get_table(self.table_name)
         return table.delete(id=id)
+
+
+def create_tables(db: Database) -> None:
+    db.create_table("user", primary_id="id", primary_type=Types.string)

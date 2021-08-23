@@ -15,4 +15,5 @@ class CreatePost(CRUDBase):
         with self.uow:
             post = Post(title=req.title, content=req.content, user_id=req.user_id)
             self.post_repository.save(post)
+            self.uow.commit()
         return CreatePostResponse(**post.dict())

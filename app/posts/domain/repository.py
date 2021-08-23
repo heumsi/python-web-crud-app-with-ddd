@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional
 
-from app.posts import Post
+from app.posts.domain.model import Post
 
 
 class PostRepository(ABC):

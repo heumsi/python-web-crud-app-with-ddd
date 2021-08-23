@@ -30,28 +30,28 @@ def add_init_posts(database: dataset.Database) -> List[Post]:
 def test_find_all():
     # given
     database = get_database()
-    add_init_posts(database)
+    initial_posts = add_init_posts(database)
     post_repository = DatasetPostRepository(db=database)
 
     # when
     posts = post_repository.find_all()
 
     # then
-    assert posts == get_initial_posts()
+    assert posts == initial_posts
 
 
 def test_find_by_id():
     # given
     database = get_database()
-    add_init_posts(database)
+    initial_posts = add_init_posts(database)
     post_repository = DatasetPostRepository(db=database)
-    id = get_initial_posts()[0].id
+    id = initial_posts[0].id
 
     # when
     post = post_repository.find_by_id(id)
 
     # then
-    assert post == get_initial_posts()[0]
+    assert post == initial_posts[0]
 
 
 def test_save():
@@ -62,7 +62,7 @@ def test_save():
 
     # when
     post_repository.save(post)
-    post.name = "updated name"
+    post.title = "updated name"
     post_repository.save(post)
 
     # then

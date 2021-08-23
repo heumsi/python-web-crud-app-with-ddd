@@ -1,4 +1,4 @@
-from app.posts import Post
+from app.posts.domain.model import Post
 from app.posts.service_layer import CRUDBase
 
 
@@ -15,4 +15,5 @@ class UpdatePost(CRUDBase):
         with self.uow:
             post = Post(id=req.id, **req.dict(exclude={"id"}))
             self.post_repository.save(post)
+            self.uow.commit()
         return UpdatePostResponse(**post.dict())

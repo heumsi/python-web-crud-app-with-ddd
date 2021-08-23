@@ -1,2 +1,2 @@
 db:
-  url: sqlite://
+  url: sqlite:///sqlite.db

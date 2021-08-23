@@ -1,8 +1,9 @@
 from typing import List, Optional
 
 from dataset import Database, Table
+from dataset.types import Types
 
-from app.posts import Post
+from app.posts.domain.model import Post
 from app.posts.domain.repository import PostRepository
 
 
@@ -33,3 +34,7 @@ class DatasetPostRepository(PostRepository):
     def delete_by_id(self, id: str) -> Optional[Post]:
         table: Table = self._db.get_table(self.table_name)
         return table.delete(id=id)
+
+
+def create_tables(db: Database) -> None:
+    db.create_table("post", primary_id="id", primary_type=Types.string)

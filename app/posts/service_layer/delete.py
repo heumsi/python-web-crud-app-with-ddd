@@ -11,3 +11,4 @@ class DeletePost(CRUDBase):
     def execute(self, req: DeletePostRequest) -> None:
         with self.uow:
             self.post_repository.delete_by_id(req.id)
+            self.uow.commit()

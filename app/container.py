@@ -3,6 +3,7 @@ from dependency_injector import providers
 from dependency_injector.containers import DeclarativeContainer
 
 from app.common.service_layer.unit_of_work import DatasetUnitOfWork
+from app.posts import PostContainer
 from app.users import UserContainer
 
 
@@ -15,5 +16,11 @@ class ApplicationContainer(DeclarativeContainer):
     user_container = providers.Container(
         UserContainer,
         db=db,
-        uow=uow,
+        uow=uow
+    )
+
+    post_container = providers.Container(
+        PostContainer,
+        db=db,
+        uow=uow
     )

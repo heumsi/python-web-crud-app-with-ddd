@@ -1,5 +1,5 @@
 from app.common.domain.exceptions import CustomException
 
 
-class UserNotFoundError(CustomException):
+class PostNotFoundError(CustomException):
     pass

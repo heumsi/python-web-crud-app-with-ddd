@@ -1,10 +1,9 @@
 from app.posts.service_layer.read import (
-    ReadPostByPostId,
-    ReadPostByPostIdRequest,
+    ReadPost,
+    ReadPostRequest,
     ReadPostResponse,
     ReadPosts,
-    ReadPostsByUserId,
-    ReadPostsByUserIdRequest,
+    ReadPostsRequest,
     ReadPostsResponse,
 )
 from tests.unit.posts.conftest import get_fake_posts
@@ -18,13 +17,32 @@ def test_read_posts():
     posts = get_fake_posts()
     post_repository = FakePostRepository(posts=posts)
     service = ReadPosts(post_repository, uow)
+    req = ReadPostsRequest()
 
     # when
-    res = service.execute()
+    res = service.execute(req)
 
     # then
     assert res == ReadPostsResponse(
         items=[ReadPostResponse(**post.dict()) for post in posts]
+    )
+
+
+def test_read_posts_by_user_id():
+    # given
+    uow = FakeUnitOfWork()
+    posts = get_fake_posts()
+    post = posts[0]
+    post_repository = FakePostRepository(posts=posts)
+    service = ReadPosts(post_repository, uow)
+    req = ReadPostsRequest(user_id=post.user_id)
+
+    # when
+    res = service.execute(req)
+
+    # then
+    assert res == ReadPostsResponse(
+        items=[ReadPostResponse(**post.dict())]
     )
 
 
@@ -34,8 +52,8 @@ def test_read_post():
     posts = get_fake_posts()
     post = posts[0]
     post_repository = FakePostRepository(posts=posts)
-    service = ReadPostByPostId(post_repository, uow)
-    req = ReadPostByPostIdRequest(id=str(post.id))
+    service = ReadPost(post_repository, uow)
+    req = ReadPostRequest(id=str(post.id))
 
     # when
     res = service.execute(req)
@@ -43,18 +61,3 @@ def test_read_post():
     # then
     assert res == ReadPostResponse(**post.dict())
 
-
-def test_read_post_by_user_id():
-    # given
-    uow = FakeUnitOfWork()
-    posts = get_fake_posts()
-    post = posts[0]
-    post_repository = FakePostRepository(posts=posts)
-    service = ReadPostsByUserId(post_repository, uow)
-    req = ReadPostsByUserIdRequest(user_id=post.user_id)
-
-    # when
-    res = service.execute(req)
-
-    # then
-    assert res == ReadPostsResponse(items=[ReadPostResponse(**post.dict())])
