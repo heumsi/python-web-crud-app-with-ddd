@@ -41,9 +41,7 @@ def test_read_posts_by_user_id():
     res = service.execute(req)
 
     # then
-    assert res == ReadPostsResponse(
-        items=[ReadPostResponse(**post.dict())]
-    )
+    assert res == ReadPostsResponse(items=[ReadPostResponse(**post.dict())])
 
 
 def test_read_post():
@@ -60,4 +58,3 @@ def test_read_post():
 
     # then
     assert res == ReadPostResponse(**post.dict())
-

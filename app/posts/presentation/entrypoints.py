@@ -6,9 +6,13 @@ from app.posts.adapters.container import PostContainer
 from app.posts.presentation.schemas import UpdatePostJSONRequest, UpdatePostJSONResponse
 from app.posts.service_layer.create import CreatePost, CreatePostRequest
 from app.posts.service_layer.delete import DeletePost, DeletePostRequest
-from app.posts.service_layer.read import ReadPost, ReadPosts, ReadPostRequest, \
-    ReadPostsRequest
-from app.posts.service_layer.update import UpdatePostRequest, UpdatePost
+from app.posts.service_layer.read import (
+    ReadPost,
+    ReadPostRequest,
+    ReadPosts,
+    ReadPostsRequest,
+)
+from app.posts.service_layer.update import UpdatePost, UpdatePostRequest
 
 router = APIRouter()
 
@@ -16,8 +20,8 @@ router = APIRouter()
 @router.get("/", status_code=status.HTTP_200_OK)
 @inject
 def get_posts(
-        user_id: str = None,
-        service: ReadPosts = Depends(Provide[PostContainer.read_posts])):
+    user_id: str = None, service: ReadPosts = Depends(Provide[PostContainer.read_posts])
+):
     req = ReadPostsRequest(user_id=user_id)
     res = service.execute(req)
     return res.dict()

@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 
 from app.posts.adapters.container import PostContainer
-from app.posts.presentation import entrypoints
 from app.posts.adapters.repository import create_tables
+from app.posts.presentation import entrypoints
 from app.posts.presentation.error_handler import add_error_handler
 
 
@@ -15,4 +15,3 @@ def create_app(container: PostContainer) -> FastAPI:
     add_error_handler(app_)
 
     return app_
-

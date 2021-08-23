@@ -13,14 +13,6 @@ class ApplicationContainer(DeclarativeContainer):
     db = providers.Singleton(Database, url=config.db.url)
     uow = providers.Singleton(DatasetUnitOfWork, db=db)
 
-    user_container = providers.Container(
-        UserContainer,
-        db=db,
-        uow=uow
-    )
+    user_container = providers.Container(UserContainer, db=db, uow=uow)
 
-    post_container = providers.Container(
-        PostContainer,
-        db=db,
-        uow=uow
-    )
+    post_container = providers.Container(PostContainer, db=db, uow=uow)

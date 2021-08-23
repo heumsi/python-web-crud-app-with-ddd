@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 
-from app import users, posts
+from app import posts, users
 from app.container import ApplicationContainer
-from app.users import add_error_handler
 
 
 def create_app() -> FastAPI:

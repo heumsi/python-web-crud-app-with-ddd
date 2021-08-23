@@ -24,7 +24,6 @@ class ReadPost(CRUDBase):
         return ReadPostResponse(**post.dict())
 
 
-
 class ReadPostsRequest(BaseModel):
     user_id: str = None
 
