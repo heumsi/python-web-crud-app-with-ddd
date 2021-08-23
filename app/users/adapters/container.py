@@ -11,12 +11,12 @@ from app.users.service_layer.unit_of_work import DatasetUnitOfWork
 
 class UserContainer(DeclarativeContainer):
     # repositories
-    db = providers.Singleton(Database, url="sqlite://")
-    uow = providers.Singleton(DatasetUnitOfWork, db=db)
+    db = providers.Dependency()
+    uow = providers.Dependency()
     user_repository = providers.Singleton(DatasetUserRepository, db=db)
 
     # services
-    read_user = providers.Singleton(ReadUser, user_repository)
-    read_users = providers.Singleton(ReadUsers, user_repository)
-    create_user = providers.Singleton(CreateUser, user_repository)
-    delete_user = providers.Singleton(DeleteUser, user_repository)
+    read_user = providers.Singleton(ReadUser, user_repository=user_repository, uow=uow)
+    read_users = providers.Singleton(ReadUsers, user_repository=user_repository, uow=uow)
+    create_user = providers.Singleton(CreateUser, user_repository=user_repository, uow=uow)
+    delete_user = providers.Singleton(DeleteUser, user_repository=user_repository, uow=uow)
