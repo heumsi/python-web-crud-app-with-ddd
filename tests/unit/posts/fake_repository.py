@@ -1,4 +1,3 @@
-import copy
 from typing import List, Optional
 
 from app.posts.domain.model import Post

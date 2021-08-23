@@ -1,8 +1,6 @@
 import uvicorn
 from fastapi import FastAPI
 
-from app.posts.domain.model import Post
-
 
 def create_app() -> FastAPI:
     # container = UserContainer()

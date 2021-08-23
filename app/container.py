@@ -2,8 +2,8 @@ from dataset import Database
 from dependency_injector import providers
 from dependency_injector.containers import DeclarativeContainer
 
-from app.users import UserContainer
 from app.common.service_layer.unit_of_work import DatasetUnitOfWork
+from app.users import UserContainer
 
 
 class ApplicationContainer(DeclarativeContainer):

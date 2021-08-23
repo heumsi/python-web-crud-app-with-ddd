@@ -29,7 +29,9 @@ class ReadPosts(CRUDBase):
     def execute(self) -> ReadPostsResponse:
         with self.uow:
             posts = self.post_repository.find_all()
-        return ReadPostsResponse(items=[ReadPostResponse(**post.dict()) for post in posts])
+        return ReadPostsResponse(
+            items=[ReadPostResponse(**post.dict()) for post in posts]
+        )
 
 
 class ReadPostsByUserIdRequest(BaseModel):
@@ -40,4 +42,6 @@ class ReadPostsByUserId(CRUDBase):
     def execute(self, req: ReadPostsByUserIdRequest) -> ReadPostsResponse:
         with self.uow:
             posts = self.post_repository.find_by_user_id(req.user_id)
-        return ReadPostsResponse(items=[ReadPostResponse(**post.dict()) for post in posts])
+        return ReadPostsResponse(
+            items=[ReadPostResponse(**post.dict()) for post in posts]
+        )

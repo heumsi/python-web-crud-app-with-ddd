@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
-from app.users.domain.repository import UserRepository
 from app.common.service_layer.unit_of_work import UnitOfWork
+from app.users.domain.repository import UserRepository
 
 
 class DeleteUserRequest(BaseModel):

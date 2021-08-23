@@ -1,5 +1,12 @@
-from app.posts.service_layer.read import ReadPosts, ReadPostResponse, ReadPostsResponse, ReadPostByPostId, \
-    ReadPostByPostIdRequest, ReadPostsByUserId, ReadPostsByUserIdRequest
+from app.posts.service_layer.read import (
+    ReadPostByPostId,
+    ReadPostByPostIdRequest,
+    ReadPostResponse,
+    ReadPosts,
+    ReadPostsByUserId,
+    ReadPostsByUserIdRequest,
+    ReadPostsResponse,
+)
 from tests.unit.posts.conftest import get_fake_posts
 from tests.unit.posts.fake_repository import FakePostRepository
 from tests.unit.users.fake_unit_of_work import FakeUnitOfWork
@@ -16,7 +23,9 @@ def test_read_posts():
     res = service.execute()
 
     # then
-    assert res == ReadPostsResponse(items=[ReadPostResponse(**post.dict()) for post in posts])
+    assert res == ReadPostsResponse(
+        items=[ReadPostResponse(**post.dict()) for post in posts]
+    )
 
 
 def test_read_post():

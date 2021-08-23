@@ -1,6 +1,6 @@
-from typing import Optional, List
+from typing import List, Optional
 
-from dataset import Table, Database
+from dataset import Database, Table
 
 from app.posts import Post
 from app.posts.domain.repository import PostRepository

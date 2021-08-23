@@ -1,4 +1,4 @@
-from app.posts.domain.model import PostBase, Post
+from app.posts.domain.model import Post, PostBase
 from app.posts.service_layer import CRUDBase
 
 

@@ -1,8 +1,8 @@
 from pydantic import BaseModel
 
+from app.common.service_layer.unit_of_work import UnitOfWork
 from app.users.domain.model import User
 from app.users.domain.repository import UserRepository
-from app.common.service_layer.unit_of_work import UnitOfWork
 
 
 class CreateUserRequest(BaseModel):

@@ -1,7 +1,5 @@
 from typing import List
 
-from ulid import ULID
-
 from app.posts.domain.model import Post
 
 
