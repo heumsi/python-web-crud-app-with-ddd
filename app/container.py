@@ -3,7 +3,7 @@ from dependency_injector import providers
 from dependency_injector.containers import DeclarativeContainer
 
 from app.users import UserContainer
-from app.users.service_layer.unit_of_work import DatasetUnitOfWork
+from app.common.service_layer.unit_of_work import DatasetUnitOfWork
 
 
 class ApplicationContainer(DeclarativeContainer):

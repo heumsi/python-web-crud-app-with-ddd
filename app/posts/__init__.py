@@ -1,6 +1,5 @@
 import uvicorn
 from fastapi import FastAPI
-from fastapi_crudrouter import MemoryCRUDRouter
 
 from app.posts.domain.model import Post
 
@@ -13,7 +12,6 @@ def create_app() -> FastAPI:
     # create_tables(db)
 
     app_ = FastAPI()
-    app_.include_router(MemoryCRUDRouter(schema=Post))
     # app_.include_router(entrypoints.router)
     # add_error_handler(app_)
 

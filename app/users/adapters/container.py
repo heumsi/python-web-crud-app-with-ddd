@@ -6,7 +6,7 @@ from app.users.adapters.repository import DatasetUserRepository
 from app.users.service_layer.create import CreateUser
 from app.users.service_layer.delete import DeleteUser
 from app.users.service_layer.read import ReadUser, ReadUsers
-from app.users.service_layer.unit_of_work import DatasetUnitOfWork
+from app.common.service_layer.unit_of_work import DatasetUnitOfWork
 
 
 class UserContainer(DeclarativeContainer):
