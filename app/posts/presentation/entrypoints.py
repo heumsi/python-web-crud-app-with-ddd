@@ -3,7 +3,11 @@ from fastapi import APIRouter, Depends
 from starlette import status
 
 from app.posts.adapters.container import PostContainer
-from app.posts.presentation.schemas import UpdatePostJSONRequest, UpdatePostJSONResponse
+from app.posts.presentation.schemas import (
+    UpdatePostJSONRequest,
+    UpdatePostJSONResponse,
+    CreatePostJsonRequest, CreatePostJsonResponse,
+)
 from app.posts.service_layer.create import CreatePost, CreatePostRequest
 from app.posts.service_layer.delete import DeletePost, DeletePostRequest
 from app.posts.service_layer.read import (
@@ -13,6 +17,7 @@ from app.posts.service_layer.read import (
     ReadPostsRequest,
 )
 from app.posts.service_layer.update import UpdatePost, UpdatePostRequest
+from app.users.service_layer.authorize import AuthorizeUser, AuthorizeUserRequest
 
 router = APIRouter()
 
@@ -40,11 +45,20 @@ def get_post(
 @router.post("/", status_code=status.HTTP_201_CREATED)
 @inject
 def create_post(
-    req: CreatePostRequest,
+    json_req: CreatePostJsonRequest,
     service: CreatePost = Depends(Provide[PostContainer.create_post]),
+    authorize_user_service: AuthorizeUser = Depends(
+        Provide[PostContainer.authorize_user]
+    ),
 ):
+    # authorize
+    authorize_user_req = AuthorizeUserRequest(id=json_req.user_id, password=json_req.user_password)
+    authorize_user_res = authorize_user_service.execute(authorize_user_req)
+
+    # do service
+    req = CreatePostRequest(title=json_req.title, content=json_req.content, user_id=authorize_user_res.id)
     res = service.execute(req)
-    return res.dict()
+    return CreatePostJsonResponse(title=res.title, content=res.content, user_id=res.user_id, id=res.id)
 
 
 @router.put("/{post_id}", status_code=status.HTTP_200_OK)

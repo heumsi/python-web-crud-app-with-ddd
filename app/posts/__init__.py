@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from app.common.presentation.error_handler import add_common_error_handler
 from app.posts.adapters.container import PostContainer
 from app.posts.adapters.repository import create_tables
 from app.posts.presentation import entrypoints
@@ -13,5 +14,6 @@ def create_app(container: PostContainer) -> FastAPI:
     app_ = FastAPI()
     app_.include_router(entrypoints.router)
     add_error_handler(app_)
+    add_common_error_handler(app_)
 
     return app_

@@ -2,12 +2,8 @@ from abc import ABC, abstractmethod
 
 from dataset import Database
 
-from app.users.domain.repository import UserRepository
-
 
 class UnitOfWork(ABC):
-    user_repository: UserRepository
-
     def __exit__(self, *args) -> None:
         self.rollback()
 

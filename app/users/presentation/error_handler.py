@@ -1,6 +1,6 @@
-from fastapi import FastAPI, Request
+from fastapi import status, FastAPI
+from fastapi.requests import Request
 from fastapi.responses import JSONResponse
-from starlette import status
 
 from app.users.domain.exceptions import UserNotFoundError
 

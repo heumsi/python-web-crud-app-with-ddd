@@ -14,5 +14,4 @@ class ApplicationContainer(DeclarativeContainer):
     uow = providers.Singleton(DatasetUnitOfWork, db=db)
 
     user_container = providers.Container(UserContainer, db=db, uow=uow)
-
-    post_container = providers.Container(PostContainer, db=db, uow=uow)
+    post_container = providers.Container(PostContainer, db=db, uow=uow, authorize_user=user_container.authorize_user)

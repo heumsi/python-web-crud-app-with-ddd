@@ -2,6 +2,7 @@ from dependency_injector import providers
 from dependency_injector.containers import DeclarativeContainer
 
 from app.users.adapters.repository import DatasetUserRepository
+from app.users.service_layer.authorize import AuthorizeUser
 from app.users.service_layer.create import CreateUser
 from app.users.service_layer.delete import DeleteUser
 from app.users.service_layer.read import ReadUser, ReadUsers
@@ -23,4 +24,7 @@ class UserContainer(DeclarativeContainer):
     )
     delete_user = providers.Singleton(
         DeleteUser, user_repository=user_repository, uow=uow
+    )
+    authorize_user = providers.Singleton(
+        AuthorizeUser, user_repository=user_repository, uow=uow
     )

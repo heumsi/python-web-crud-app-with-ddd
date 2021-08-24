@@ -6,6 +6,7 @@ from app.posts.service_layer.create import CreatePost
 from app.posts.service_layer.delete import DeletePost
 from app.posts.service_layer.read import ReadPost, ReadPosts
 from app.posts.service_layer.update import UpdatePost
+from app.users.service_layer.authorize import AuthorizeUser
 
 
 class PostContainer(DeclarativeContainer):
@@ -28,3 +29,6 @@ class PostContainer(DeclarativeContainer):
     delete_post = providers.Singleton(
         DeletePost, post_repository=post_repository, uow=uow
     )
+
+    # other aggregates
+    authorize_user: AuthorizeUser = providers.Dependency()
