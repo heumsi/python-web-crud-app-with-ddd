@@ -1,4 +1,4 @@
-from app.posts.service_layer.create import (
+from app.modules.posts.service_layer.use_cases.create import (
     CreatePost,
     CreatePostRequest,
     CreatePostResponse,

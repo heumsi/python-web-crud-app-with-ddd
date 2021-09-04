@@ -1,4 +1,4 @@
-from app.posts.service_layer.read import (
+from app.modules.posts.service_layer.use_cases.read import (
     ReadPost,
     ReadPostRequest,
     ReadPostResponse,

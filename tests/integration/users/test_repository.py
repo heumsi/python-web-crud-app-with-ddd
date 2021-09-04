@@ -4,8 +4,8 @@ import dataset
 import pytest
 from dataset.types import Types
 
-from app.users.adapters.repository import DatasetUserRepository
-from app.users.domain.model import User
+from app.modules.users.adapters.repository import DatasetUserRepository
+from app.modules.users.domain.model import User
 from tests.unit.users.conftest import get_fake_user, get_fake_users
 
 

@@ -1,7 +1,7 @@
 from typing import List, Optional
 
-from app.users.domain.model import User
-from app.users.domain.repository import UserRepository
+from app.modules.users.domain.model import User
+from app.modules.users.domain.repository import UserRepository
 
 
 class FakeUserRepository(UserRepository):

@@ -1,6 +1,6 @@
 from typing import List
 
-from app.posts.domain.model import Post
+from app.modules.posts.domain.model import Post
 
 
 def get_fake_post() -> Post:

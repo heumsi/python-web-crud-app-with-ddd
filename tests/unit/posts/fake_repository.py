@@ -1,7 +1,7 @@
 from typing import List, Optional
 
-from app.posts.domain.model import Post
-from app.posts.domain.repository import PostRepository
+from app.modules.posts.domain.model import Post
+from app.modules.posts.domain.repository import PostRepository
 
 
 class FakePostRepository(PostRepository):

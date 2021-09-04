@@ -1,8 +1,8 @@
 from dataset import Database
 
-from app.common.service_layer.unit_of_work import DatasetUnitOfWork
-from app.users import create_tables
-from app.users.adapters.repository import DatasetUserRepository
+from app import create_tables
+from app.modules.common.service_layer.unit_of_work import DatasetUnitOfWork
+from app.modules.users.adapters.repository import DatasetUserRepository
 from tests.unit.users.conftest import get_fake_user
 
 db = Database(url="sqlite://")

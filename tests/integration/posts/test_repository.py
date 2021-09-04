@@ -4,8 +4,8 @@ import dataset
 import pytest
 from dataset.types import Types
 
-from app.posts.adapters.repository import DatasetPostRepository
-from app.posts.domain.model import Post
+from app.modules.posts.adapters.repository import DatasetPostRepository
+from app.modules.posts.domain.model import Post
 from tests.unit.posts.conftest import get_fake_post, get_fake_posts
 
 

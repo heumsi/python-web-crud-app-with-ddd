@@ -1,4 +1,4 @@
-from app.posts.service_layer.update import (
+from app.modules.posts.service_layer.use_cases.update import (
     UpdatePost,
     UpdatePostRequest,
     UpdatePostResponse,

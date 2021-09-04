@@ -1,4 +1,4 @@
-from app.users.service_layer.create import (
+from app.modules.users.service_layer.use_cases.create import (
     CreateUser,
     CreateUserRequest,
     CreateUserResponse,

@@ -1,6 +1,6 @@
 from typing import List
 
-from app.users.domain.model import User
+from app.modules.users.domain.model import User
 
 
 def get_fake_user() -> User:

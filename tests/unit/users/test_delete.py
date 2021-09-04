@@ -1,4 +1,7 @@
-from app.users.service_layer.delete import DeleteUser, DeleteUserRequest
+from app.modules.users.service_layer.use_cases.delete import (
+    DeleteUser,
+    DeleteUserRequest,
+)
 from tests.unit.users.conftest import get_fake_user
 from tests.unit.users.fake_repository import FakeUserRepository
 from tests.unit.users.fake_unit_of_work import FakeUnitOfWork

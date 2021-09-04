@@ -1,4 +1,4 @@
-from app.users.service_layer.read import (
+from app.modules.users.service_layer.use_cases.read import (
     ReadUser,
     ReadUserRequest,
     ReadUserResponse,
