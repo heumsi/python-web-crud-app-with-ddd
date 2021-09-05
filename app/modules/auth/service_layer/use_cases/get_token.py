@@ -5,7 +5,7 @@ from app.modules.auth.domain.model import TokenPayload
 from app.modules.auth.domain.repository import AuthRepository
 from app.modules.auth.service_layer.exceptions import (
     TokenCreateError,
-    UserNotFoundError,
+    UserNotFoundError, PasswordInvalidError,
 )
 
 
@@ -30,6 +30,8 @@ class GetToken:
         user = self._auth_repository.find_by_user_id(req.user_id)
         if not user:
             raise UserNotFoundError("존재하지 않는 유저입니다.")
+        if user.password != req.user_pasword:
+            raise PasswordInvalidError("패스워드가 일치하지 않습니다.")
         token_payload = TokenPayload(user_id=user.id)
         token = self._create_token(payload=token_payload)
         return GetTokenResponse(token=token)

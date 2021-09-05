@@ -2,6 +2,7 @@ from jose import JWTError, jwt
 from pydantic import BaseModel, ValidationError
 
 from app.modules.auth.domain.model import TokenPayload
+from app.modules.auth.service_layer.exceptions import TokenInvalidError
 
 
 class GetTokenPayloadRequest(BaseModel):
@@ -10,10 +11,6 @@ class GetTokenPayloadRequest(BaseModel):
 
 class GetTokenPayloadResponse(BaseModel):
     user_id: str
-
-
-class GetTokenPayloadError(Exception):
-    pass
 
 
 class GetTokenPayload:
@@ -30,7 +27,7 @@ class GetTokenPayload:
             )
             token_payload = TokenPayload(**decoded_jwt)
         except JWTError:
-            raise GetTokenPayloadError("올바른 토큰이 아닙니다.")
+            raise TokenInvalidError("올바른 토큰이 아닙니다.")
         except ValidationError:
-            raise GetTokenPayloadError("토큰 페이로드 버전이 맞지 않습니다. 새로 토큰을 발급해주세요.")
+            raise TokenInvalidError("토큰 페이로드 버전이 맞지 않습니다. 새로 토큰을 발급해주세요.")
         return GetTokenPayloadResponse(user_id=token_payload.user_id)

@@ -11,7 +11,7 @@ def test_delete_user():
     # given
     uow = FakeUnitOfWork()
     user_repository = FakeUserRepository([get_fake_user()])
-    req = DeleteUserRequest(id="hardy@socar.kr")
+    req = DeleteUserRequest(id="hardy@socar.kr", requested_user_id="hardy@socar.kr")
     service = DeleteUser(user_repository=user_repository, uow=uow)
 
     # when

@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from starlette import status
 
-from app.modules.auth.presentation.entrypoints.get_token import get_token
-from app.modules.auth.presentation.entrypoints.get_token_payload import (
+from app.api.auth.entrypoints.get_token import get_token
+from app.api.auth.entrypoints.get_token_payload import (
     get_token_payload,
 )
 

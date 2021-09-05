@@ -28,8 +28,12 @@ class DatasetPostRepository(PostRepository):
 
     def save(self, post: Post) -> Post:
         table: Table = self._db.get_table(self.table_name)
-        return table.upsert(post.dict(), keys=["id"])
+        table.upsert(post.dict(), keys=["id"])
+        return post
 
     def delete_by_id(self, id: str) -> Optional[Post]:
         table: Table = self._db.get_table(self.table_name)
-        return table.delete(id=id)
+        post_dict = table.find_one(id=id)
+        table.delete(id=id)
+        if post_dict:
+            return Post(**post_dict)

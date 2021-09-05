@@ -1,5 +1,5 @@
-from app.modules.posts.domain.model import Post, PostBase
-from app.modules.posts.service_layer import CRUDBase
+from app.modules.posts.domain.model import PostBase, Post
+from app.modules.posts.service_layer.use_cases import CRUDBase
 
 
 class CreatePostRequest(PostBase):

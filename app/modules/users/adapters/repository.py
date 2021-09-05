@@ -24,8 +24,13 @@ class DatasetUserRepository(UserRepository):
 
     def save(self, user: User) -> User:
         table: Table = self._db.get_table(self.table_name)
-        return table.upsert(user.dict(), keys=["id"])
+        table.upsert(user.dict(), keys=["id"])
+        return user
 
     def delete_by_id(self, id: str) -> Optional[User]:
         table: Table = self._db.get_table(self.table_name)
-        return table.delete(id=id)
+        user_dict = table.find_one(id=id)
+        if user_dict:
+            table.delete(id=id)
+            return User(**user_dict)
+
