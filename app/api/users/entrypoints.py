@@ -4,6 +4,7 @@ from starlette import status
 
 from app.api.common.dependencies import TokenPayload, get_token_payload
 from app.modules.container import AppContainer
+from app.modules.posts.service_layer.use_cases.delete import DeletePostsByUserId
 from app.modules.users.service_layer.use_cases.create import (
     CreateUser,
     CreateUserRequest,
@@ -51,7 +52,8 @@ def create_user(
 @router.delete("/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
 @inject
 def delete_user(
-    user_id: str, service: DeleteUser = Depends(Provide[AppContainer.users.delete_user]),
+    user_id: str,
+    service: DeleteUser = Depends(Provide[AppContainer.users.delete_user]),
     token_payload: TokenPayload = Depends(get_token_payload),
 ):
     req = DeleteUserRequest(id=user_id, requested_user_id=token_payload.user_id)

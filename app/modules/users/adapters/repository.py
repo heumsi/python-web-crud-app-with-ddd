@@ -33,4 +33,3 @@ class DatasetUserRepository(UserRepository):
         if user_dict:
             table.delete(id=id)
             return User(**user_dict)
-

@@ -1,11 +1,14 @@
 from abc import ABC, abstractmethod
-
-from dataset import Database
+from types import TracebackType
+from typing import Type
 
 
 class UnitOfWork(ABC):
-    def __exit__(self, *args) -> None:
-        self.rollback()
+    def __exit__(
+        self, exc_type: Type[Exception], exc_val: Exception, exc_tb: TracebackType
+    ) -> None:
+        if exc_type:
+            self.rollback()
 
     def __enter__(self) -> None:
         pass
@@ -17,18 +20,3 @@ class UnitOfWork(ABC):
     @abstractmethod
     def rollback(self) -> None:
         pass
-
-
-class DatasetUnitOfWork(UnitOfWork):
-    def __init__(self, db: Database) -> None:
-        self.db = db
-
-    def __enter__(self) -> Database:
-        self.db.begin()
-        return self.db
-
-    def commit(self) -> None:
-        self.db.commit()
-
-    def rollback(self) -> None:
-        self.db.rollback()

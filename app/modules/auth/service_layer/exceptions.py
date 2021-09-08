@@ -12,5 +12,3 @@ class TokenInvalidError(Exception):
 
 class PasswordInvalidError(Exception):
     pass
-
-

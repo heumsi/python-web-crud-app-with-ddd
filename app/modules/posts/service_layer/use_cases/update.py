@@ -25,7 +25,9 @@ class UpdatePost(CRUDBase):
             post = self.post_repository.find_by_id(req.id)
             if post.user_id != req.requested_user_id:
                 raise UnauthorizedError("본인의 게시글만 수정할 수 있습니다.")
-            post = Post(id=post.id, title=req.title, content=req.content, user_id=post.user_id)
+            post = Post(
+                id=post.id, title=req.title, content=req.content, user_id=post.user_id
+            )
             post = self.post_repository.save(post)
             self.uow.commit()
         return UpdatePostResponse(**post.dict())

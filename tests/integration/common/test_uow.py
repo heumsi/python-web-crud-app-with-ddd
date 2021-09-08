@@ -1,7 +1,7 @@
 from dataset import Database
 
 from app.infrastructures.persistence import create_tables
-from app.modules.common.service_layer.unit_of_work import DatasetUnitOfWork
+from app.modules.common.adapters.unit_of_work import DatasetUnitOfWork
 from app.modules.users.adapters.repository import DatasetUserRepository
 from tests.unit.users.conftest import get_fake_user
 

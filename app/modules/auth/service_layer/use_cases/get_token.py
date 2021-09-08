@@ -5,7 +5,8 @@ from app.modules.auth.domain.model import TokenPayload
 from app.modules.auth.domain.repository import AuthRepository
 from app.modules.auth.service_layer.exceptions import (
     TokenCreateError,
-    UserNotFoundError, PasswordInvalidError,
+    UserNotFoundError,
+    PasswordInvalidError,
 )
 
 

@@ -37,3 +37,7 @@ class DatasetPostRepository(PostRepository):
         table.delete(id=id)
         if post_dict:
             return Post(**post_dict)
+
+    def delete_all_by_user_id(self, user_id: str) -> None:
+        table: Table = self._db.get_table(self.table_name)
+        table.delete(user_id=user_id)

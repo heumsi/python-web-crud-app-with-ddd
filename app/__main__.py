@@ -13,7 +13,7 @@ from app.modules.container import AppContainer
 
 container = AppContainer()
 container.config.from_pydantic(AppConfig())
-container.wire(packages=[sys.modules['app']])
+container.wire(packages=[sys.modules["app"]])
 create_tables(container.db())
 app_ = create_app(container)
 

@@ -6,10 +6,14 @@ from app.api.common.dependencies import TokenPayload, get_token_payload
 from app.api.posts.schemas import (
     CreatePostJsonRequest,
     UpdatePostJSONRequest,
-    UpdatePostJSONResponse, CreatePostJsonResponse,
+    UpdatePostJSONResponse,
+    CreatePostJsonResponse,
 )
 from app.modules.container import AppContainer
-from app.modules.posts.service_layer.use_cases.create import CreatePost, CreatePostRequest
+from app.modules.posts.service_layer.use_cases.create import (
+    CreatePost,
+    CreatePostRequest,
+)
 from app.modules.posts.service_layer.use_cases.delete import (
     DeletePost,
     DeletePostRequest,
@@ -31,7 +35,8 @@ router = APIRouter()
 @router.get("/", status_code=status.HTTP_200_OK)
 @inject
 def get_posts(
-    user_id: str = None, service: ReadPosts = Depends(Provide[AppContainer.posts.read_posts])
+    user_id: str = None,
+    service: ReadPosts = Depends(Provide[AppContainer.posts.read_posts]),
 ):
     req = ReadPostsRequest(user_id=user_id)
     res = service.execute(req)
@@ -72,7 +77,12 @@ def update_post(
     service: UpdatePost = Depends(Provide[AppContainer.posts.update_post]),
     token_payload: TokenPayload = Depends(get_token_payload),
 ):
-    req = UpdatePostRequest(id=post_id, title=json_req.title, content=json_req.content, requested_user_id=token_payload.user_id)
+    req = UpdatePostRequest(
+        id=post_id,
+        title=json_req.title,
+        content=json_req.content,
+        requested_user_id=token_payload.user_id,
+    )
     res = service.execute(req)
     return UpdatePostJSONResponse(**res.dict())
 
@@ -80,7 +90,8 @@ def update_post(
 @router.delete("/{post_id}", status_code=status.HTTP_204_NO_CONTENT)
 @inject
 def delete_post(
-    post_id: str, service: DeletePost = Depends(Provide[AppContainer.posts.delete_post]),
+    post_id: str,
+    service: DeletePost = Depends(Provide[AppContainer.posts.delete_post]),
     token_payload: TokenPayload = Depends(get_token_payload),
 ):
     req = DeletePostRequest(id=post_id, requested_user_id=token_payload.user_id)
