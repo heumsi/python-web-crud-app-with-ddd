@@ -1,8 +1,4 @@
-from app.modules.posts.service_layer.use_cases.update import (
-    UpdatePost,
-    UpdatePostRequest,
-    UpdatePostResponse,
-)
+from app.modules.posts.service_layer.use_cases.command.update import UpdatePost, UpdatePostRequest, UpdatePostResponse
 from tests.unit.posts.conftest import get_fake_posts
 from tests.unit.posts.fake_repository import FakePostRepository
 from tests.unit.users.fake_unit_of_work import FakeUnitOfWork

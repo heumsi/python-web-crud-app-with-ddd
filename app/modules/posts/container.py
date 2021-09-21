@@ -2,13 +2,10 @@ from dependency_injector import providers
 from dependency_injector.containers import DeclarativeContainer
 
 from app.modules.posts.adapters.repository import DatasetPostRepository
-from app.modules.posts.service_layer.use_cases.create import CreatePost
-from app.modules.posts.service_layer.use_cases.delete import (
-    DeletePost,
-    DeletePostsByUserId,
-)
-from app.modules.posts.service_layer.use_cases.read import ReadPost, ReadPosts
-from app.modules.posts.service_layer.use_cases.update import UpdatePost
+from app.modules.posts.service_layer.use_cases.command.create import CreatePost
+from app.modules.posts.service_layer.use_cases.command.delete import DeletePost, DeletePostsByUserId
+from app.modules.posts.service_layer.use_cases.command.update import UpdatePost
+from app.modules.posts.service_layer.use_cases.query.read import ReadPost, ReadPosts
 
 
 class PostContainer(DeclarativeContainer):

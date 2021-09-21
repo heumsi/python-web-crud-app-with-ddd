@@ -1,11 +1,5 @@
-from app.modules.posts.service_layer.use_cases.read import (
-    ReadPosts,
-    ReadPostsRequest,
-    ReadPostsResponse,
-    ReadPostResponse,
-    ReadPost,
-    ReadPostRequest,
-)
+from app.modules.posts.service_layer.use_cases.query.read import ReadPosts, ReadPostsRequest, ReadPostsResponse, \
+    ReadPostResponse, ReadPost, ReadPostRequest
 from tests.unit.posts.conftest import get_fake_posts
 from tests.unit.posts.fake_repository import FakePostRepository
 from tests.unit.users.fake_unit_of_work import FakeUnitOfWork

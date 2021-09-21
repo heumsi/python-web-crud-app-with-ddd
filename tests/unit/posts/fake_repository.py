@@ -5,8 +5,6 @@ from app.modules.posts.domain.repository import PostRepository
 
 
 class FakePostRepository(PostRepository):
-
-
     def __init__(self, posts: Optional[List[Post]] = None) -> None:
         if not posts:
             self.posts = {}

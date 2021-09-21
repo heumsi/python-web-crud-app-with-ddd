@@ -4,7 +4,6 @@ from starlette import status
 
 from app.api.common.dependencies import TokenPayload, get_token_payload
 from app.modules.container import AppContainer
-from app.modules.posts.service_layer.use_cases.delete import DeletePostsByUserId
 from app.modules.users.service_layer.use_cases.create import (
     CreateUser,
     CreateUserRequest,

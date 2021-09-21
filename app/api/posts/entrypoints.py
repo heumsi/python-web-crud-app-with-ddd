@@ -10,24 +10,10 @@ from app.api.posts.schemas import (
     CreatePostJsonResponse,
 )
 from app.modules.container import AppContainer
-from app.modules.posts.service_layer.use_cases.create import (
-    CreatePost,
-    CreatePostRequest,
-)
-from app.modules.posts.service_layer.use_cases.delete import (
-    DeletePost,
-    DeletePostRequest,
-)
-from app.modules.posts.service_layer.use_cases.read import (
-    ReadPost,
-    ReadPostRequest,
-    ReadPosts,
-    ReadPostsRequest,
-)
-from app.modules.posts.service_layer.use_cases.update import (
-    UpdatePost,
-    UpdatePostRequest,
-)
+from app.modules.posts.service_layer.use_cases.command.create import CreatePost, CreatePostRequest
+from app.modules.posts.service_layer.use_cases.command.delete import DeletePost, DeletePostRequest
+from app.modules.posts.service_layer.use_cases.command.update import UpdatePost, UpdatePostRequest
+from app.modules.posts.service_layer.use_cases.query.read import ReadPosts, ReadPostsRequest, ReadPost, ReadPostRequest
 
 router = APIRouter()
 
