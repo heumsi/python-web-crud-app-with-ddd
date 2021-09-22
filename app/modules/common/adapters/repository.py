@@ -1,6 +1,6 @@
-from abc import abstractmethod, ABC
+from abc import ABC, abstractmethod
 
-from dataset import Table, Database
+from dataset import Database, Table
 
 
 class DatasetRepository(ABC):

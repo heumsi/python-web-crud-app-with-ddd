@@ -6,7 +6,10 @@ from app.api.comments.entrypoints.delete_comment import delete_comment
 
 router = APIRouter()
 router.add_api_route(
-    path="/", endpoint=create_comment, methods=["POST"], status_code=status.HTTP_201_CREATED
+    path="/",
+    endpoint=create_comment,
+    methods=["POST"],
+    status_code=status.HTTP_201_CREATED,
 )
 router.add_api_route(
     path="/{comment_id}",

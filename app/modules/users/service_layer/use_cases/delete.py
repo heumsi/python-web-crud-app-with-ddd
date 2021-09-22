@@ -4,7 +4,10 @@ from pydantic import BaseModel
 
 from app.modules.common.service_layer.exceptions import UnauthorizedError
 from app.modules.common.service_layer.unit_of_work import UnitOfWork
-from app.modules.posts.service_layer.use_cases.command.delete import DeletePostsByUserId, DeletePostsByUserIdRequest
+from app.modules.posts.service_layer.use_cases.command.delete import (
+    DeletePostsByUserId,
+    DeletePostsByUserIdRequest,
+)
 from app.modules.users.domain.repository import UserRepository
 from app.modules.users.service_layer.exceptions import UserNotFoundError
 

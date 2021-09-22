@@ -3,7 +3,6 @@ from dependency_injector import providers
 from dependency_injector.containers import DeclarativeContainer
 
 from app.modules.common.adapters.unit_of_work import DatasetUnitOfWork
-from app.modules.posts.container import PostContainer
 from app.modules.users.adapters.repository import DatasetUserRepository
 from app.modules.users.service_layer.use_cases.create import CreateUser
 from app.modules.users.service_layer.use_cases.delete import DeleteUser

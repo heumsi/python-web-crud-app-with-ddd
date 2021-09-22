@@ -3,10 +3,10 @@ from fastapi.requests import Request
 from fastapi.responses import JSONResponse
 
 from app.modules.auth.service_layer.exceptions import (
-    TokenCreateError,
-    UserNotFoundError,
     PasswordInvalidError,
+    TokenCreateError,
     TokenInvalidError,
+    UserNotFoundError,
 )
 
 

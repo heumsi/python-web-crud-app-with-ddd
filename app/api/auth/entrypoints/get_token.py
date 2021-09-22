@@ -2,7 +2,6 @@ from dependency_injector.wiring import Provide, inject
 from fastapi import Depends
 from pydantic import BaseModel
 
-from app.modules.auth.container import AuthContainer
 from app.modules.auth.service_layer.use_cases.get_token import GetToken, GetTokenRequest
 from app.modules.container import AppContainer
 

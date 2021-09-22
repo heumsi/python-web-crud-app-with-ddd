@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.api import auth, users, posts, common, comments
+from app.api import auth, comments, common, posts, users
 from app.modules.container import AppContainer
 
 

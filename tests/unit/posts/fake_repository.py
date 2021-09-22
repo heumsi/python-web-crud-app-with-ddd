@@ -29,6 +29,5 @@ class FakePostRepository(PostRepository):
 
     def delete_all_by_user_id(self, user_id: str) -> None:
         for id, post in self.posts.items():
-            if post['user_id'] == user_id:
+            if post["user_id"] == user_id:
                 del self.posts[id]
-    

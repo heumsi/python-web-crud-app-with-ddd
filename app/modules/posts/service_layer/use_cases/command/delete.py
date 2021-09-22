@@ -4,7 +4,6 @@ from pydantic import BaseModel
 
 from app.modules.common.service_layer.exceptions import UnauthorizedError
 from app.modules.common.service_layer.unit_of_work import UnitOfWork
-from app.modules.posts.service_layer.exceptions import PostNotFoundError
 from app.modules.posts.service_layer.use_cases import CRUDBase
 
 

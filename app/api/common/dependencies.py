@@ -1,9 +1,7 @@
-import requests
 from dependency_injector.wiring import Provide, inject
-from fastapi import Header, Depends
-from pydantic import Required, BaseModel
+from fastapi import Depends, Header
+from pydantic import BaseModel, Required
 
-from app.modules.auth.container import AuthContainer
 from app.modules.auth.service_layer.use_cases.get_token_payload import (
     GetTokenPayload,
     GetTokenPayloadRequest,

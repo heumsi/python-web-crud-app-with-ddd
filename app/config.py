@@ -1,4 +1,4 @@
-from pydantic import BaseSettings, Field, Required
+from pydantic import BaseSettings
 
 from app.infrastructures.persistence import DBConfig
 from app.modules.auth.config import AuthConfig

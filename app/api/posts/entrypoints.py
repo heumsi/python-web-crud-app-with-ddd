@@ -5,15 +5,29 @@ from starlette import status
 from app.api.common.dependencies import TokenPayload, get_token_payload
 from app.api.posts.schemas import (
     CreatePostJsonRequest,
+    CreatePostJsonResponse,
     UpdatePostJSONRequest,
     UpdatePostJSONResponse,
-    CreatePostJsonResponse,
 )
 from app.modules.container import AppContainer
-from app.modules.posts.service_layer.use_cases.command.create import CreatePost, CreatePostRequest
-from app.modules.posts.service_layer.use_cases.command.delete import DeletePost, DeletePostRequest
-from app.modules.posts.service_layer.use_cases.command.update import UpdatePost, UpdatePostRequest
-from app.modules.posts.service_layer.use_cases.query.read import ReadPosts, ReadPostsRequest, ReadPost, ReadPostRequest
+from app.modules.posts.service_layer.use_cases.command.create import (
+    CreatePost,
+    CreatePostRequest,
+)
+from app.modules.posts.service_layer.use_cases.command.delete import (
+    DeletePost,
+    DeletePostRequest,
+)
+from app.modules.posts.service_layer.use_cases.command.update import (
+    UpdatePost,
+    UpdatePostRequest,
+)
+from app.modules.posts.service_layer.use_cases.query.read import (
+    ReadPost,
+    ReadPostRequest,
+    ReadPosts,
+    ReadPostsRequest,
+)
 
 router = APIRouter()
 

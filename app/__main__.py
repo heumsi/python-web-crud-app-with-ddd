@@ -10,7 +10,6 @@ from app.config import AppConfig
 from app.infrastructures.persistence import create_tables
 from app.modules.container import AppContainer
 
-
 container = AppContainer()
 container.config.from_pydantic(AppConfig())
 container.wire(packages=[sys.modules["app"]])

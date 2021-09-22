@@ -1,4 +1,8 @@
-from app.modules.posts.service_layer.use_cases.command.create import CreatePost, CreatePostRequest, CreatePostResponse
+from app.modules.posts.service_layer.use_cases.command.create import (
+    CreatePost,
+    CreatePostRequest,
+    CreatePostResponse,
+)
 from tests.unit.posts.fake_repository import FakePostRepository
 from tests.unit.users.fake_unit_of_work import FakeUnitOfWork
 

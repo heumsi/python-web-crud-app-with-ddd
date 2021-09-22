@@ -2,9 +2,7 @@ from fastapi import APIRouter
 from starlette import status
 
 from app.api.auth.entrypoints.get_token import get_token
-from app.api.auth.entrypoints.get_token_payload import (
-    get_token_payload,
-)
+from app.api.auth.entrypoints.get_token_payload import get_token_payload
 
 router = APIRouter()
 router.add_api_route(
