@@ -20,6 +20,7 @@ requests = "^2.26.0"
 isort = "^5.9.3"
 pycln = "^1.0.3"
 black = "21.7.b0"
+mypy = "^0.910"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
