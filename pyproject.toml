@@ -21,6 +21,17 @@ isort = "^5.9.3"
 pycln = "^1.0.3"
 black = "21.7.b0"
 mypy = "^0.910"
+pre-commit = "^2.15.0"
+
+[tool.black]
+
+[tool.pycln]
+all = true
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
